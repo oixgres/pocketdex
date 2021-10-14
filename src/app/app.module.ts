@@ -16,9 +16,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { ProfileComponent } from './profile/profile.component';
 import { PocketmonComponent } from './pocketmon/pocketmon.component';
+import { TrainerComponent } from './trainer/trainer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +30,8 @@ import { PocketmonComponent } from './pocketmon/pocketmon.component';
     PocketListComponent,
     TopbarComponent,
     ProfileComponent,
-    PocketmonComponent
+    PocketmonComponent,
+    TrainerComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,11 @@ import { PocketmonComponent } from './pocketmon/pocketmon.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatCarouselModule
+    MatCarouselModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

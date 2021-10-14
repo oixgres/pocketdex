@@ -17,4 +17,8 @@ export class TopbarComponent implements OnInit {
     this.router.navigateByUrl('/profile');   
   }
 
+  public pklist(){
+    this.router.navigateByUrl('/');
+  }
+
 }

@@ -1,17 +1,13 @@
 <app-topbar></app-topbar>
-<mat-grid-list [cols]="cols" rowHeight="1:1.1">
-    <mat-grid-tile>
+<mat-grid-list [cols]="cols" [rowHeight]="rows">
+    <mat-grid-tile >
         <ng-container *ngIf="pokemon">
-            <mat-card style="text-align: center; margin: 0 5rem 0 5rem;" class="example-card">
+            <mat-card style="text-align: center; margin:3rem 3rem 0 3rem;">
                 <mat-card-header style="justify-content: center;">
                     <mat-card-title style="font-size: 50px; margin: 2rem;"> {{pokemon.name}} </mat-card-title>
-                    
-                    <!-- ngif -->
                     <mat-card-subtitle>
                         DEX ENTRY #{{pokemon.dex | number:'3.0-0'}}
                     </mat-card-subtitle>
-                    <!-- <mat-card-subtitle #else1 *ngIf="pokemon.dex<100; else else2;" >DEX ENTRY #0{{pokemon.dex}}</mat-card-subtitle>
-                    <mat-card-subtitle #else2> {{pokemon.dex}} </mat-card-subtitle> -->
                 </mat-card-header>
                 <div>
                     <mat-carousel
@@ -19,7 +15,7 @@
                         [autoplay]="true"
                         [interval]="5000"
                         maxWidth="auto"
-                        [proportion]="85"
+                        [proportion]="90"
                         [slides]="4"
                         [loop]="true"
                         [hideArrows]="false"
@@ -39,9 +35,7 @@
                 </div>
                 <div>
                     <p>
-                      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                      bred for hunting.
+                      {{pokemon.extra.entry}}
                     </p>
                     <button mat-button>{{pokemon.type.primary}}</button>
                     <button mat-button>{{pokemon.type.secondary}}</button>
@@ -50,6 +44,19 @@
         </ng-container>
     </mat-grid-tile>
     <mat-grid-tile>
-        <p >Prueba</p>
+        <mat-card style='width: 100%; margin: 0 3rem 0 3rem;'>
+            <mat-card-title style="margin: 1rem 0 1rem 0">Stats</mat-card-title>
+            <div *ngFor="let stat of pokemon.stats; let i=index">
+                <mat-card-subtitle>
+                    {{stats[i].name}} {{stat}}
+                    <mat-progress-bar
+                        mode="determinate"
+                        value={{calcStatPercent(stat*100,stats[i].maxValue)}}
+                        style="margin-bottom: 2rem;"    
+                    ></mat-progress-bar>
+                </mat-card-subtitle>
+            </div>
+        </mat-card>
+
     </mat-grid-tile>
 </mat-grid-list>

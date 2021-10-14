@@ -12,7 +12,14 @@ import { Router } from '@angular/router';
 
 export class PocketListComponent implements OnInit {
   pokemon :any[] = [];
+  dex:number=0;
+  pkmnShwon:number= 0;
+  
   cols:number = 0;
+  rows:string = '';
+
+  yoffset:number = 0;
+  stopDex:boolean = false;
 
   constructor(private p:PokeapiService, private router:Router) { }
 
@@ -23,25 +30,76 @@ export class PocketListComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any){
-    let width = event.target.innerWidth;
+    this.calcCols(event.target.innerWidth);
+  }
 
-    this.calcCols(width);
+
+  @HostListener('window:scroll', ['$event']) 
+  onScroll(event:any) {
+    let limit = 50;
+
+    console.log(window.pageYOffset)
+
+    if((window.pageYOffset - this.yoffset) > 3800){
+      console.log('*** scroll *** ')
+      this.yoffset += 3800;
+      
+      if(this.pkmnShwon >= 800){
+        this.pkmnShwon+=50;
+        limit = 48;
+      }
+      else
+        this.pkmnShwon += 50;
+  
+      if(!this.stopDex){
+        if(limit==48)
+          this.stopDex=true;
+
+        this.p.getPokemon(limit, this.pkmnShwon)
+            .subscribe(
+              res =>{
+                res.results.forEach((result:any) => {
+                  this.pokemon.push({
+                    dex: this.dex+1,
+                    name: result.name,
+                    data: result.url,
+                    sprite: ''
+                  })
+                  this.getSprite(this.dex++);
+                });
+              },
+              err =>{
+                console.log(err);
+              }
+            )
+      }
+    }
   }
 
   calcCols(width:number){
-    if(width >= 1200)
+    if(width >= 1200){
       this.cols = 5;
+      this.rows = '1:1.5';
+    }
     else
-      if(width >= 1000)
+      if(width >= 1000){
         this.cols = 4;
+        this.rows = '1:1.4'
+      }
       else
-        if(width >=800)
+        if(width >=800){
           this.cols = 3;
+          this.rows = '1:1.3'
+        }
         else
-          if(width>= 500)
+          if(width>= 500){
             this.cols = 2;
-          else
+            this.rows = '1:1.4'
+          }
+          else{
             this.cols = 1;
+            this.rows='1:0.9'
+          }
   }
 
   getSprite(dex:number){
@@ -55,18 +113,17 @@ export class PocketListComponent implements OnInit {
   }
 
   getPokemon(){
-    this.p.getPokemon()
+    this.p.getPokemon(50, 0)
       .subscribe(
         res =>{
-          res.results.forEach((result:any, index:number) => {
+          res.results.forEach((result:any) => {
             this.pokemon.push({
-              dex: index+1,
+              dex: this.dex+1,
               name: result.name,
               data: result.url,
               sprite: ''
             })
-
-            this.getSprite(index);
+            this.getSprite(this.dex++);
           });
         },
         err =>{
@@ -77,5 +134,8 @@ export class PocketListComponent implements OnInit {
 
   pokemonData(dex:number){
     this.router.navigateByUrl(`/pocketmon/${dex}`);
+  }
+  expandButton(){
+    
   }
 }

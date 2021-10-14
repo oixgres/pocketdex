@@ -12,8 +12,8 @@ export class PokeapiService {
   
   constructor(private http: HttpClient) { }
 
-  getPokemon(){
-    return this.http.get<any>(`${this.pocketURL}pokemon/?&limit=50/`);
+  getPokemon(limit:number, offset:number){
+    return this.http.get<any>(`${this.pocketURL}pokemon?offset=${offset}&limit=${limit}/`);
   }
 
   getData(dex:number){

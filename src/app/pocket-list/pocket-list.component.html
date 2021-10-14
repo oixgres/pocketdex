@@ -1,4 +1,4 @@
-<mat-grid-list [cols]="cols" rowHeight="1:1.5">
+<mat-grid-list [cols]="cols" [rowHeight]="rows">
   <div *ngFor="let pkmn of pokemon" >
     <mat-grid-tile>
       <mat-card
@@ -8,10 +8,13 @@
       >
         <mat-card-header style="justify-content: center;">
           <mat-card-title>{{pkmn.name}}</mat-card-title>
-          <mat-card-subtitle>#{{pkmn.dex}}</mat-card-subtitle>
+          <mat-card-subtitle>#{{pkmn.dex  | number:'3.0-0'}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src={{pkmn.sprite}}>
       </mat-card>
     </mat-grid-tile>
   </div>
 </mat-grid-list>
+<div *ngIf="pkmnShwon <850;" mat-button style="display:grid; margin-bottom: 5rem; height: 100px; justify-content: center;">
+  <mat-spinner></mat-spinner>
+</div>
