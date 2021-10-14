@@ -3,14 +3,42 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PocketdexlistComponent } from './pocketdexlist/pocketdexlist.component';
+import { TopbarComponent } from './topbar/topbar.component';
+import { PocketListComponent } from './pocket-list/pocket-list.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+
+import { ProfileComponent } from './profile/profile.component';
+import { PocketmonComponent } from './pocketmon/pocketmon.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PocketdexlistComponent,
+    PocketListComponent,
+    TopbarComponent,
+    ProfileComponent,
+    PocketmonComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

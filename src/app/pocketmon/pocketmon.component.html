@@ -1,0 +1,55 @@
+<app-topbar></app-topbar>
+<mat-grid-list [cols]="cols" rowHeight="1:1.1">
+    <mat-grid-tile>
+        <ng-container *ngIf="pokemon">
+            <mat-card style="text-align: center; margin: 0 5rem 0 5rem;" class="example-card">
+                <mat-card-header style="justify-content: center;">
+                    <mat-card-title style="font-size: 50px; margin: 2rem;"> {{pokemon.name}} </mat-card-title>
+                    
+                    <!-- ngif -->
+                    <mat-card-subtitle>
+                        DEX ENTRY #{{pokemon.dex | number:'3.0-0'}}
+                    </mat-card-subtitle>
+                    <!-- <mat-card-subtitle #else1 *ngIf="pokemon.dex<100; else else2;" >DEX ENTRY #0{{pokemon.dex}}</mat-card-subtitle>
+                    <mat-card-subtitle #else2> {{pokemon.dex}} </mat-card-subtitle> -->
+                </mat-card-header>
+                <div>
+                    <mat-carousel
+                        timings="250ms ease-in"
+                        [autoplay]="true"
+                        [interval]="5000"
+                        maxWidth="auto"
+                        [proportion]="85"
+                        [slides]="4"
+                        [loop]="true"
+                        [hideArrows]="false"
+                        [hideIndicators]="false"
+                        [useKeyboard]="true"
+                        [useMouseWheel]="false"
+                        orientation="ltr"
+                    >
+                        <mat-carousel-slide
+                            #matCarouselSlide
+                            *ngFor="let sprite of pokemon.sprites;"
+                            [image]="sprite"    
+                            overlayColor="##f8f8ff "
+                            [hideOverlay]="true"
+                        ></mat-carousel-slide>
+                    </mat-carousel>
+                </div>
+                <div>
+                    <p>
+                      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                      bred for hunting.
+                    </p>
+                    <button mat-button>{{pokemon.type.primary}}</button>
+                    <button mat-button>{{pokemon.type.secondary}}</button>
+                </div>
+            </mat-card>    
+        </ng-container>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <p >Prueba</p>
+    </mat-grid-tile>
+</mat-grid-list>
