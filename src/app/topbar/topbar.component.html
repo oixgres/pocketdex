@@ -1,12 +1,10 @@
 <p>
-    <mat-toolbar color="primary">
-      <span>Pocketdex</span>
+    <mat-toolbar color="warn">
+      <button mat-button (click)="pklist()"><span style="font-size: large;">POCKETDEX</span></button>
       <div style="margin-left: auto; margin-right: 0;">
-        <div class="example-button-container">
-            <button mat-mini-fab color="warn" (click)="profile()">
-              <mat-icon>home</mat-icon>
-            </button>
-          </div>
+        <button mat-button color="white" (click)="profile()">
+          <mat-icon>home</mat-icon>
+        </button>
       </div>
     </mat-toolbar>
   </p>
