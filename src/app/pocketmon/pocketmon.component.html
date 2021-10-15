@@ -1,12 +1,13 @@
 <app-topbar></app-topbar>
+<app-navdex></app-navdex>
 <mat-grid-list [cols]="cols" [rowHeight]="rows">
     <mat-grid-tile >
         <ng-container *ngIf="pokemon">
-            <mat-card style="text-align: center; margin:3rem 3rem 0 3rem;">
+            <mat-card style="text-align: center; margin: 5rem ;">
                 <mat-card-header style="justify-content: center;">
-                    <mat-card-title style="font-size: 50px; margin: 2rem;"> {{pokemon.name}} </mat-card-title>
+                    <mat-card-title style="font-size: x-large; margin: 2rem;"> {{pokemon.name}} </mat-card-title>
                     <mat-card-subtitle>
-                        DEX ENTRY #{{pokemon.dex | number:'3.0-0'}}
+                        DEX NO. #{{pokemon.dex | number:'3.0-0'}}
                     </mat-card-subtitle>
                 </mat-card-header>
                 <div>
@@ -37,18 +38,47 @@
                     <p>
                       {{pokemon.extra.entry}}
                     </p>
-                    <button mat-button>{{pokemon.type.primary}}</button>
-                    <button mat-button>{{pokemon.type.secondary}}</button>
+                    <button mat-button [style.color]="setTypeColor(pokemon.type.primary)">{{pokemon.type.primary}}</button>
+                    <button 
+                        *ngIf="pokemon.type.secondary"
+                        mat-button [style.color]="setTypeColor(pokemon.type.secondary)"
+                    >{{pokemon.type.secondary}}</button>
                 </div>
             </mat-card>    
         </ng-container>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-card style='width: 100%; margin: 0 3rem 0 3rem;'>
-            <mat-card-title style="margin: 1rem 0 1rem 0">Stats</mat-card-title>
+        <mat-card style='width: 100%; margin: 5rem 3rem 0 3rem;'>
+            <!-- Habilidades -->
+            <mat-card-title style="margin: 1rem 0 1rem 0">Ability</mat-card-title>
+                <div style="margin-bottom: 1rem;">
+                    <label>Normal: </label>
+                    <mat-card-subtitle style="display: contents;">{{pokemon.abilities.normal | uppercase}}</mat-card-subtitle>
+                </div>
+                
+                <div *ngIf="pokemon.abilities.secret" style="margin-bottom: 1rem;">
+                    <label>Hidden: </label>
+                    <mat-card-subtitle style="display: contents;">{{pokemon.abilities.secret | uppercase}}</mat-card-subtitle>
+                </div>
+            <mat-divider></mat-divider>
+            
+            <!-- Crecimiento -->
+            <mat-card-title style="margin:2rem 0 2rem 0">Growth</mat-card-title>
+            <mat-card-subtitle>
+                {{pokemon.extra.growth | uppercase}}:
+                <mat-progress-bar
+                    mode="determinate"
+                    value={{setGrowthLevel(pokemon.extra.growth)}}
+                ></mat-progress-bar>
+            </mat-card-subtitle>
+
+            <mat-divider></mat-divider>
+            
+            <!-- Stats -->
+            <mat-card-title style="margin: 2rem 0 1rem 0">Stats</mat-card-title>
             <div *ngFor="let stat of pokemon.stats; let i=index">
                 <mat-card-subtitle>
-                    {{stats[i].name}} {{stat}}
+                    {{stats[i].name}}: {{stat}}
                     <mat-progress-bar
                         mode="determinate"
                         value={{calcStatPercent(stat*100,stats[i].maxValue)}}

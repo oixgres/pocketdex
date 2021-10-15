@@ -7,16 +7,28 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   cols:number = 0;
+  rows:string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    window.innerWidth > 900 ? this.cols = 2: this.cols=1;
+    this.calcCols(window.innerWidth);
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any){
-    event.target.innerWidth > 900 ? this.cols = 2 : this.cols=1;
+    this.calcCols(event.target.innerWidth);
+  }
+
+  calcCols(width:number){
+    if(width > 800){
+      this.cols = 2;
+      this.rows = '1:1.3';
+    }
+    else{
+      this.cols = 1;
+      this.rows = '1:1'
+    }
   }
 
 

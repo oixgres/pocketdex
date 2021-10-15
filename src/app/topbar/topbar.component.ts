@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,22 @@ import { Router } from '@angular/router';
 })
 export class TopbarComponent implements OnInit {
 
+  row:number = 0;
+  
   constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any){
+    this.calcRow(event.target.innerWidth);
+  }
+
+
+  calcRow(innerWidth: number) {
+  }
+
 
   public profile(){
     this.router.navigateByUrl('/profile');   

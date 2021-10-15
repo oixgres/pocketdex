@@ -18,7 +18,7 @@ export class PocketmonComponent implements OnInit {
     { name:'SPECIAL ATTACK',maxValue:173,},
     { name:'SPECIAL DEFENSE',maxValue:230,},
     { name:'SPEED',maxValue:200,},
-  ]
+  ];
 
   constructor(private p: PokeapiService, private router:ActivatedRoute) {
     this.calcCols(window.innerWidth);
@@ -39,13 +39,13 @@ export class PocketmonComponent implements OnInit {
   }
   
   calcCols(width:number){
-    if(width > 800){
+    if(width > 900){
       this.cols = 2;
       this.rows ='1:1.3';
     }
     else{
       this.cols = 1;
-      this.rows = '1:1.2';
+      this.rows = '1:1.3';
     }
   }
 
@@ -80,7 +80,6 @@ export class PocketmonComponent implements OnInit {
           ],
           extra:null
         }
-
         this.getPokemonDexInfo(dex);
         console.log(this.pokemon)
       },
@@ -106,6 +105,43 @@ export class PocketmonComponent implements OnInit {
         console.log(this.pokemon);
       }
     )
+  }
+
+  setTypeColor(color:string){
+    switch(color){
+        case'normal': return '#e8ce72';
+        case'fire': return '#ff0000';
+        case'water':return '#4076c7';
+        case'grass':return '#18852a';
+        case'electric':return '#ebd321';
+        case'ice':return '#37b5d4';
+        case'fighting':return '#e67529';
+        case'poison':return '#37063d';
+        case'ground':return '#bdb24e';
+        case'flying':return '#26875d';
+        case'psychic':return '#d130a9';
+        case'bug':return '#628222';
+        case'rock':return '#8a4a1f';
+        case'ghost':return '#573957';
+        case'dark':return '#030100';
+        case'dragon':return '#3d5c59';
+        case'steel':return '#596161';
+        case'fairy':return '#f56cb3';
+    }
+
+    return null;
+  }
+
+  setGrowthLevel(growth:string){
+    switch(growth){
+      case 'slow': return 25;
+      case 'medium': return 75;
+      case 'fast': return 100;
+      case 'medium-slow': return 50;
+      case 'slow-then-very-fast': return 50;
+      case 'fast-then-very-slow': return 50;
+    }
+    return 0;
   }
 
   calcStatPercent(item:any, divisor:any):number{

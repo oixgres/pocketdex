@@ -1,0 +1,23 @@
+<div style="display: flex; justify-content: center;">
+    <button 
+        mat-flat-button
+        style="margin-left: 5rem; margin-right: auto;"
+        color="warn"
+        (click) = 'prev()'
+    >PREV</button>
+    <div style="display: flex;">
+        <input placeholder="DEX NUMBER (1-898)" type="text" (keyup)="onKey($event)">
+        <button 
+            mat-flat-button
+            style="margin-right: 5rem; margin-left: auto;"
+            color="warn"
+            (click) = 'find()'
+        >Find</button>
+    </div>
+    <button 
+        mat-flat-button
+        style="margin-right: 5rem; margin-left: auto;"
+        color="warn"
+        (click) = 'next()'
+    >NEXT</button>
+</div>

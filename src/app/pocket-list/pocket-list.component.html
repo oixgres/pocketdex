@@ -2,9 +2,10 @@
   <div *ngFor="let pkmn of pokemon" >
     <mat-grid-tile>
       <mat-card
-        style="width: 200px; text-align: center;"
+        style="width: 200px; text-align: center; cursor: pointer;"
         tabindex="0"
         (click)="pokemonData(pkmn.dex)"
+        class="prueba"
       >
         <mat-card-header style="justify-content: center;">
           <mat-card-title>{{pkmn.name}}</mat-card-title>

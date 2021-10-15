@@ -40,9 +40,9 @@ export class PocketListComponent implements OnInit {
 
     console.log(window.pageYOffset)
 
-    if((window.pageYOffset - this.yoffset) > 3800){
-      console.log('*** scroll *** ')
-      this.yoffset += 3800;
+    if((window.pageYOffset - this.yoffset) > 3600){
+      //console.log('*** scroll *** ')
+      this.yoffset += 3600;
       
       if(this.pkmnShwon >= 800){
         this.pkmnShwon+=50;

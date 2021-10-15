@@ -19,10 +19,12 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { ProfileComponent } from './profile/profile.component';
 import { PocketmonComponent } from './pocketmon/pocketmon.component';
 import { TrainerComponent } from './trainer/trainer.component';
+import { NavdexComponent } from './navdex/navdex.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { TrainerComponent } from './trainer/trainer.component';
     TopbarComponent,
     ProfileComponent,
     PocketmonComponent,
-    TrainerComponent
+    TrainerComponent,
+    NavdexComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { TrainerComponent } from './trainer/trainer.component';
     MatProgressBarModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatDividerModule,
 
   ],
   providers: [],
